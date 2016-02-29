@@ -101,10 +101,9 @@ def register_submit():
     return json_respon(msg="User registered successfully")
 
 @user_views.route('/logout/')
+@login_required
 def logout():
     #commit time logout to database User
-    if not current_user.is_active:
-        abort(404)
     user = User.query.get(current_user.id)
     user.last_login = datetime.datetime.now()
     db.session.commit()

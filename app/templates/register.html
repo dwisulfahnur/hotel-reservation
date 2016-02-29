@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <tr>
+			<td><h2>REGISTER:</h2></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        <form action="" method="POST">
+          <p>
+            {{ form.hidden_tag() }}
+            Full Name:</br>
+            {{ form.full_name }}
+            {% for error in form.full_name.errors %}
+            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+            {% endfor %}
+          </p><p>
+            Username:</br>
+            {{ form.username }}
+            {% for error in form.username.errors %}
+            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+            {% endfor %}
+          </p><p>
+            Email:</br>
+            {{ form.email }}
+            {% for error in form.email.errors %}
+            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+            {% endfor %}
+          </p><p>
+            Address:</br>
+            {{ form.address }}
+            {% for error in form.address.errors %}
+            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+            {% endfor %}
+          </p><p>
+            Phone Number:</br>
+            {{ form.phone_number }}
+            {% for error in form.phone_number.errors %}
+            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+            {% endfor %}
+          </p><p>
+            Password:</br>
+            {{ form.password }}
+            {% for error in form.password.errors %}
+            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+            {% endfor %}
+          </p><p>
+            Retype password above:</br>
+            {{ form.confirm }}
+            {% for error in form.confirm.errors %}
+            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+            {% endfor %}
+          </p>
+          <input type="submit" value="DAFTAR">
+        </form>
+        <a href="/login/">Login</a>
+        </td>
+    </tr>
+
+	{% endblock %}

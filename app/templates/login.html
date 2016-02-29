@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+		<td><h2>LOGIN:</h2></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        <form action="" method="POST">
+            <p>
+              Username:</br>
+							{{ form.hidden_tag() }}
+              {{ form.username }}
+							{% for error in form.username.errors %}
+	            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+	            {% endfor %}
+            </p>
+            <p>
+              Password:</br>
+              {{ form.password }}
+							{% for error in form.password.errors %}
+	            {% if error %}<i style="color:red">{{error}}</i>{% endif %}
+	            {% endfor %}
+            </p>
+            <input type="submit" value="LOGIN">
+        </form>
+				<a href="/register">Register</a>
+					{% with messages = get_flashed_messages() %}
+					  {% if messages %}
+					  {% for message in messages %}
+					      <i style="color:green">{{ message }}</i>
+					    {% endfor %}
+					  {% endif %}
+					{% endwith %}
+					{% block body %}{% endblock %}
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+    </tr>
+
+{% endblock %}

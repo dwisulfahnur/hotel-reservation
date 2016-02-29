@@ -1,0 +1,29 @@
+<h1>New Hotel</h1>
+
+<form action="" method="POST">
+    Hotel Name <input type="text" name="name"></br></br>
+    Address <input type="text" name="address"></br></br>
+    Zip Code <input type="text" name="zipcode"></br></br>
+    Country
+    <select name="country">
+      <option value="null">COUNTRY</option>
+      {% for country in countries %}
+      <option value="{{country.id}}">{{ country.country }}</option>
+      {% endfor %}
+    </select></br></br>
+    Province
+    <select name="province">
+      <option value="null">PROVINCE</option>
+      {% for province in provincies %}
+      <option value="{{province.id}}">{{ province.province }}</option>
+      {% endfor %}
+    </select></br></br>
+    City
+    <select name="city">
+      <option value="null">CITY</option>
+      {% for city in cities %}
+      <option value="{{ city.id }}">{{ city.city }}</option>
+      {% endfor %}
+    </select></br></br>
+    <input type="submit" value="SIMPAN">
+</form>

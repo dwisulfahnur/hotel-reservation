@@ -8,12 +8,13 @@ from flask.ext.login import login_required, current_user
 
 hotel_views = Blueprint('hotel', __name__, template_folder='../templates')
 
-
 #LIST HOTEL
 class Hotel(views.MethodView):
     def get(self):
         hotels = Hotels.query.all()
-        data = [dict(hotel_name=hotel.id,hotel_id=hotel.id) for hotel in hotels]
+        data = [dict(hotel_name=hotel.id,
+                     hotel_id=hotel.id)
+                     for hotel in hotels]
         return json_respon(data=data)
     def delete(self):
         hotels = Hotels.query.all()

@@ -1,6 +1,7 @@
 import datetime
 from app.core.db import db
 from app.user.models import User
+from app.hotel.models import Hotels
 
 
 class Reservation(db.Model):
@@ -8,6 +9,9 @@ class Reservation(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey('User.id'))
     user = db.relationship('User',
+        backref=db.backref('reservation', lazy='dynamic'))
+    hotel_id = db.Column(db.Integer, db.ForeignKey('Hotels.id'))
+    hotel = db.relationship('Hotels',
         backref=db.backref('reservation', lazy='dynamic'))
     reservation_code = db.Column(db.String(10))
     checkin_date = db.Column(db.DateTime)

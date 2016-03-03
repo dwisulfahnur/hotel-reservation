@@ -84,6 +84,4 @@ class ReservationDetail(views.MethodView):
 reservation_view = login_required(ReservationDetail.as_view('reservation_detail'))
 reservation_views.add_url_rule('/reservation', defaults={'id': None},
                                 view_func=reservation_view, methods=['GET',])
-reservation_views.add_url_rule('/reservation/<path:create_new>',
-                                view_func=reservation_view, methods=['POST',])
 reservation_views.add_url_rule('/reservation/<int:id>', view_func=reservation_view, methods=["GET", "PUT", "DELETE"])

@@ -40,6 +40,47 @@ def login_submit():
     login_user(user)
     return redirect(url_for('hotel.hotel'))
 
+#Admin Login Submit
+@user_views.route("/admin_login_submit", methods=["POST"])
+def admin_login_submit():
+    username = request.args.get("username", None)
+    password = request.args.get("password", None)
+
+    #validate field form
+    errors = []
+    if username == None or not username:
+        errors.append(dict(field="username",
+                      message="Input Empty"))
+    if password == None or not password:
+        errors.append(dict(field="password",
+                       message="Input Empty"))
+    if errors:
+        return json_respon(code=400,
+                           msg="Input Empty",
+                           errors=errors)
+    #Check Existing User
+    user = User.query.filter_by(username=username).first()
+
+    if not user:
+        return json_respon(code=400,
+                           msg="Unknown Username")
+
+    #Check User Role, is admin?
+    user_role = UserRoles.query.filter_by(user_id=user.id).first()
+    if user_role.role_id is not 1:
+        return json_respon(code = 401,
+                               msg = "You account is not Admin")
+
+    #Check Hashed Password
+    if not check_password_hash(user.password, password):
+        return json_respon(code = 400,
+                           msg = "Password Wrong.")
+
+    #Create Session User
+    login_user(user)
+    return json_respon(msg = "You're login successfull as admin")
+
+
 @user_views.route('/register_submit', methods=["POST"])
 def register_submit():
     fullname = request.args.get("fullname")

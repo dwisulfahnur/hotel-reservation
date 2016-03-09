@@ -1,14 +1,15 @@
 from app.core.helper import create_app
 from app.core.db import db
 from app.core.json import json_respon
-from app.home.views import home_views
-from app.user.views import user_views
-from app.user.loginmanager import login_manager
-from app.hotel.views import hotel_views
-from app.reservation.views import reservation_views
 
+from app.user.views import user_views
 from app.user.models import*
+from app.user.loginmanager import login_manager
+
+from app.hotel.views import hotel_views
 from app.hotel.models import*
+
+from app.reservation.views import reservation_views
 from app.reservation.models import*
 
 config = 'app.config'
@@ -17,7 +18,6 @@ db.init_app(app)
 login_manager.init_app(app)
 
 # register blueprint
-app.register_blueprint(home_views)
 app.register_blueprint(user_views)
 app.register_blueprint(hotel_views)
 app.register_blueprint(reservation_views)

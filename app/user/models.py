@@ -1,8 +1,9 @@
 import datetime
 from app.core.db import db
 from flask.ext.bcrypt import generate_password_hash
+from flask.ext.login import UserMixin
 
-class User(db.Model):
+class User(db.Model, UserMixin):
     __tablename__ = 'User'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(15), nullable=False, unique=True)

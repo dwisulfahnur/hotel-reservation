@@ -12,8 +12,8 @@ hotel_views = Blueprint('hotel', __name__, template_folder='../templates')
 class Hotel(views.MethodView):
     def get(self):
         hotels = Hotels.query.all()
-        data = [dict(hotel_name=hotel.id,
-                     hotel_id=hotel.id)
+        data = [dict(href= url_for('.hotel', id=hotel.id),
+                     hotel_id=hotel.name)
                      for hotel in hotels]
         return json_respon(data=data)
     def delete(self):
@@ -26,8 +26,6 @@ class Hotel(views.MethodView):
                                msg=e.message)
 hotel_view = Hotel.as_view('hotel')
 hotel_views.add_url_rule('/hotel', view_func=hotel_view, methods=["GET", "DELETE"])
-
-
 
 class HotelDetail(views.MethodView):
     #DETAIL SINGLE HOTEL

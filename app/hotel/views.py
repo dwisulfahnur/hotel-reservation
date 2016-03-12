@@ -12,7 +12,7 @@ hotel_views = Blueprint('hotel', __name__, template_folder='../templates')
 class Hotel(views.MethodView):
     def get(self):
         hotels = Hotels.query.all()
-        data = [dict(href= url_for('.hotel', id=hotel.id),
+        data = [dict(href= url_for('.hotel_detail', id=hotel.id),
                      hotel_id=hotel.name)
                      for hotel in hotels]
         return json_respon(data=data)
